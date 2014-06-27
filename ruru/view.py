@@ -48,10 +48,16 @@ class View(object):
             rowno = self.find_row(f)
             self.rows[rowno].append(f)
 
+    # def get_clip_box(self):
+    #     from matplotlib.transforms import Bbox
+    #     return Bbox(((self.start, -0.1),
+    #                  (self.stop, len(self.rows)+0.1)))
+
+
     def draw(self, features):
         features = sorted(features)
         self.place(features)
-        self.ax.set_ylim(0, len(self.rows))
+        self.ax.set_ylim(-0.1, len(self.rows)+0.1)
         self.ax.set_yticks([],[])
         for i, row in enumerate(self.rows):
             ymin, ymax = i, i+(1-self.padding)
